@@ -3,34 +3,6 @@ const outputDiv = document.querySelector('.output-box');
 const outputText = document.querySelector('.output-text');
 
 
-const converFunction = (input) => {
-    let result;
-    switch (input) {
-        case 1:
-            result = 'I';
-            break;
-        case 5:
-            result = 'V';
-            break;
-        case 10:
-            result = 'X';
-            break;
-        case 50:
-            result = 'L';
-            break;
-        case 100:
-            result = 'C';
-            break;
-        case 500:
-            result = 'D';
-            break;
-        case 1000:
-            result = 'M';
-            break;
-        default:
-            break;
-    }
-}
 
 const printRomanNumber = (nearest, number) => {
     let result = ''
@@ -38,11 +10,7 @@ const printRomanNumber = (nearest, number) => {
         result += nearest   
     }
     return result
-    // console.log(result)
 }
-
-
-printRomanNumber("V", 1)
 
 
 const finalResult = (nearest, base, highest, inputNumber) => {
@@ -79,10 +47,10 @@ const lastResult = (input) => {
         hundredth = finalResult("X", "L", "C", digitsArray[digitsArrayLength -2])
     }
     if(digitsArrayLength >= 3){
-        thousandth = finalResult("C", "D", "V̅", digitsArray[digitsArrayLength -3])
+        thousandth = finalResult("C", "D", "M", digitsArray[digitsArrayLength -3])
     }
     if(digitsArrayLength >= 4){
-        fifthThoundanth = finalResult("D", "V̅", "X̅ ", digitsArray[digitsArrayLength -4])
+        fifthThoundanth = finalResult("M", "V̅", "X̅ ", digitsArray[digitsArrayLength -4])
     }
     let veryLastResult
     if(fifthThoundanth) {
@@ -104,7 +72,11 @@ btn.addEventListener('click', function() {
     const inputValue = document.querySelector('.input-number');
     const inputValueNumber = Number(inputValue.value)
 
-    if(inputValueNumber <= 0){
+    if(inputValue.value === ''){
+        outputDiv.classList.add('danger')
+        outputText.textContent = "Please enter a valid number"
+    }
+    else if(inputValueNumber <= 0){
         outputDiv.classList.add('danger')
         outputText.textContent = "Please enter a number greater than or equal to 1"
     }
